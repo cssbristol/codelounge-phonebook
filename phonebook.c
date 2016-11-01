@@ -2,6 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+/**
+ * Phonebook is a simple phonebook application. Store pairs of names and numbers and then look them up.
+ */
+
 struct contact {
     char name[100];
     char number[15];
@@ -16,6 +20,9 @@ struct phonebook {
 
 typedef struct phonebook Phonebook;
 
+/**
+ * Prompt the user for a name and number, then add them to the phonebook.
+ */
 void add_contact(Phonebook *p) {
     const int max = 100;
     char *name = malloc(20);
@@ -31,6 +38,9 @@ void add_contact(Phonebook *p) {
     p->num_contact++;
 }
 
+/**
+ * Prompt the user for a name, then display any matching records in the phonebook.
+ */
 void show_contact(Phonebook *p) {
     const int max = 100;
     char *name = malloc(20);
@@ -47,7 +57,9 @@ void show_contact(Phonebook *p) {
     printf("Contact not found\n");
 }
 
-
+/**
+ * Display all records in the phonebook.
+ */
 void display_phonebook(Phonebook *p) {
     for (int i = 0; i < p->num_contact; i++) {
         Contact contact = p->contacts[i];
@@ -55,7 +67,12 @@ void display_phonebook(Phonebook *p) {
     }
 }
 
-void query_generator(Phonebook *p) {
+/**
+ * Read commands from the user's input and dispatch to the appropriate functions.
+ */
+int main() {
+    Phonebook phonebook;
+
     printf("Welcome to the phone book. You can add or lookup contacts. (A/L).\n");
     const int max = 10;
     char line[max], command;
@@ -72,9 +89,4 @@ void query_generator(Phonebook *p) {
         printf("Input another command.\n");
         fgets(line, max, stdin);
     }
-}
-
-int main() {
-    Phonebook phonebook;
-    query_generator(&phonebook);
 }
