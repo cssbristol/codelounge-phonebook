@@ -39,12 +39,12 @@ Input another command.
 
 ## Todo
 
-[ ] Add more code comments
-[ ] Skeleton code for people to fill in
-[ ] Quoted names
-[ ] Search for parts of names
-[ ] Export to file
-[ ] Password protection
+[] Add more code comments
+[] Skeleton code for people to fill in
+[] Quoted names
+[] Search for parts of names
+[] Export to file
+[] Password protection
 
 ## Contributors
 
