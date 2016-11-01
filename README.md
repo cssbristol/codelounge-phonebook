@@ -1,6 +1,6 @@
 # Phonebook
 
-A simple phonebook in C. Written by Alessio Zakaria for CodeLounge 2016.
+A simple phonebook in C. Written for CodeLounge 2016.
 
 ## Build + Run
 
@@ -36,3 +36,17 @@ Name:Police     Num:011899988199911
 Input another command.
 (Ctrl-C)
 ```
+
+## Todo
+
+[ ] Add more code comments
+[ ] Skeleton code for people to fill in
+[ ] Quoted names
+[ ] Search for parts of names
+[ ] Export to file
+[ ] Password protection
+
+## Contributors
+
+* Alessio Zakaria (original author)
+* Ross Gardiner
