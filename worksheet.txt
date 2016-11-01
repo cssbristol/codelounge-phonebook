@@ -1,0 +1,27 @@
+This project is a simple C implementation of a rudimentary phonebook.
+
+This project aims to help you use structs whilst programming and understanding I/O operations in C.
+
+You will be able to add contacts to your phonebook with given numbers and then search for the numbers given the contact name.
+The next section will give you an overview of how to write/read from files on your computer.
+
+If you finish all of that and still want to carry on we'll have a few optional extras.
+
+We've given you a skeleton project with very few things filled in apart from some essentials and stuff you haven't seen before.
+
+This project isn't too far beyond the scope of your abilities so it'll be fairly hands off from here on out.
+
+To start I would recommend implementing the phonebook and contact structures you will be using for the rest of the project.
+
+
+maybe do some cool rsa crypto crap and teach them about it so they feel like they've learnt something new and some interesting bollocks
+about how C does file and standard I/O.
+
+Some useful functions:
+
+some quick explanations
+
+strncpy():
+fgets():
+sscanf():
+malloc explanation
