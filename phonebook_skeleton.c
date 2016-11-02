@@ -48,7 +48,6 @@ void show_contact(Phonebook *p) {
  * Display all records in the phonebook.
  */
 void display_phonebook(Phonebook *p) {
-    }
 }
 
 /**

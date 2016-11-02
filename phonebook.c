@@ -2,14 +2,41 @@
 #include <string.h>
 #include <stdlib.h>
 
-/**
- * Phonebook is a simple phonebook application. Store pairs of names and numbers and then look them up.
- */
+#include <stdint.h>
+
 
 #define NAME_LENGTH 20
 #define NUMBER_LENGTH 20
 #define PHONEBOOK_LENGTH 100
 #define COMMAND_LENGTH 5
+
+/**
+ * Phonebook is a simple phonebook application. Store pairs of names and numbers and then look them up.
+ */
+
+void encrypt (uint32_t* v, uint32_t* k) {
+    uint32_t v0=v[0], v1=v[1], sum=0, i;           /* set up */
+    uint32_t delta=0x9e3779b9;                     /* a key schedule constant */
+    uint32_t k0=k[0], k1=k[1], k2=k[2], k3=k[3];   /* cache key */
+    for (i=0; i < 32; i++) {                       /* basic cycle start */
+        sum += delta;
+        v0 += ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
+        v1 += ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
+    }                                              /* end cycle */
+    v[0]=v0; v[1]=v1;
+}
+
+void decrypt (uint32_t* v, uint32_t* k) {
+    uint32_t v0=v[0], v1=v[1], sum=0xC6EF3720, i;  /* set up */
+    uint32_t delta=0x9e3779b9;                     /* a key schedule constant */
+    uint32_t k0=k[0], k1=k[1], k2=k[2], k3=k[3];   /* cache key */
+    for (i=0; i<32; i++) {                         /* basic cycle start */
+        v1 -= ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
+        v0 -= ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
+        sum -= delta;
+    }                                              /* end cycle */
+    v[0]=v0; v[1]=v1;
+}
 
 /**
  * A single contact, which has a name and phone number.
@@ -27,6 +54,7 @@ typedef struct contact Contact;
 struct phonebook {
     int num_contacts;
     Contact contacts[PHONEBOOK_LENGTH];
+    int password;
 };
 
 typedef struct phonebook Phonebook;
@@ -78,14 +106,27 @@ void display_phonebook(Phonebook *p) {
     }
 }
 
+void write_file(Phonebook *p) {
+    FILE *fp;
+    fp = fopen("phonebook.txt", "r+");
+    if(fp != NULL) {
+        for(int i = 0; i < p->num_contacts; i++) {
+            Contact new_contact = p->contacts[i];
+            fputs(new_contact.name, fp);
+            fputs("\t", fp);
+            fputs(new_contact.number, fp);
+            fclose(fp);
+        }
+    }
+}
+
 /**
  * Read commands from the user's input and dispatch to the appropriate functions.
  */
 int main() {
     Phonebook p;
     p.num_contacts = 0;
-
-    printf("Welcome to the phone book. You can add or lookup contacts. (A/L).\n");
+    printf("Welcome to the phone book. You can add or lookup contacts. (A/L/W).\n");
     char line[COMMAND_LENGTH], command;
     printf("> ");
     fgets(line, COMMAND_LENGTH, stdin);
@@ -97,7 +138,10 @@ int main() {
             show_contact(&p);
         } else if (command == 'Q') {
             break;
-        } else {
+        } else if (command == 'W') {
+          write_file(&p);
+        }
+         else {
             printf("Invalid command. Try A or L.\n");
         }
         printf("> ");

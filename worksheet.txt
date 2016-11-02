@@ -13,13 +13,17 @@ This project isn't too far beyond the scope of your abilities so it'll be fairly
 
 To start I would recommend implementing the phonebook and contact structures you will be using for the rest of the project.
 
+If you're having trouble implementing the code, grab a friend or a helper and get cracking.
 
-maybe do some cool rsa crypto crap and teach them about it so they feel like they've learnt something new and some interesting bollocks
-about how C does file and standard I/O.
+Extensions
+ If you've implemented the phonebook no problem why not try to implement some encryption to keep your contacts super safe.
+
 
 Some useful functions:
 
 some quick explanations
+
+Explanations of stdio file io.
 
 strncpy():
 fgets():
