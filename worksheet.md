@@ -23,6 +23,29 @@ Copies the first num characters of source to destination. If the end of the sour
 
 `fgets(char *str, int n, FILE *stream)`
 
-reads a line from the file stream and stores it into the string str. It stops when either (n-1) characters are read, the newline character is read, or the end-of-file is reached, whichever comes first.
+Reads a line from the file stream and stores it into the string str. It stops when either (n-1) characters are read, the newline character is read, or the end-of-file is reached, whichever comes first. To read from the console you use the the stream stdin.
+
+The following code
+```
+char line[max];
+fgets(line, max, stdin);  
+```
+
+reads a line of input of length max from the console into the string line.
+
+
 
 `sscanf(const char *str, const char *format, ...)`
+
+Reads formatted input from the string str as format into variables separated by a dot.
+
+For example the following code
+~~~~  
+char weekday[20], month[20], dtm[100];
+
+strncpy( dtm, "Saturday March", 15);
+
+sscanf( dtm, "%s %s", weekday, month);
+~~~~
+
+copies the string "Saturday March" into the the string dtm and then formats it as two strings into the strings weekday and month.
