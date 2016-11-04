@@ -32,8 +32,6 @@ typedef struct phonebook Phonebook;
  * Prompt the user for a name and number, then add them to the phonebook.
  */
 void add_contact(Phonebook *p) {
-    char *name = malloc((NAME_LENGTH + 1) * sizeof(char));
-    char *number = malloc((NUMBER_LENGTH + 1) * sizeof(char));
 
 }
 
@@ -41,7 +39,6 @@ void add_contact(Phonebook *p) {
  * Prompt the user for a name, then display any matching records in the phonebook.
  */
 void show_contact(Phonebook *p) {
-    char *name = malloc(20);
 }
 
 /**
